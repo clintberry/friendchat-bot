@@ -67,7 +67,7 @@ domo.route('!espn :team', function(res) {
   }
 
   else if(team.toLowerCase() == 'utah') {
-    url = baseurl + 'football/college-football/teams/254/events';
+    url = baseurl + 'football/college-football/teams/254/events/';
     sport = 'college-football';
   }
 
