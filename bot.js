@@ -66,9 +66,14 @@ domo.route('!espn :team', function(res) {
     sport = 'college-football';
   }
 
-  if(team.toLowerCase() == 'utah') {
+  else if(team.toLowerCase() == 'utah') {
     url = baseurl + 'football/college-football/teams/254/events';
     sport = 'college-football';
+  }
+
+  else {
+    self.say(res.channel, 'Sorry, I am not setup too look for ' + team);
+    return;
   }
 
   url = url + '?apikey=' + nconf.get('espnkey');
