@@ -1,5 +1,4 @@
 var Domo = require('domo-kun');
-var config = require('./config');
 var nconf = require('nconf');
 
 nconf.argv()
