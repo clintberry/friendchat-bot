@@ -90,7 +90,7 @@ domo.route('!espn :team', function(res) {
       var eventDetail = teamInfo.sports[0].leagues[0].events[0].competitions[0].status.detail;
 
       if(eventDescription.toLowerCase() == 'scheduled') {
-        eventDetail = moment.utc(eventDetail).format('MMM D, h:mm a');
+        eventDetail = moment.utc(eventDetail).format('dddd MMM D, h:mm a');
       }
       self.say(res.channel, team1.team.nickname + ' (' + team1.team.record.summary + ') at ' + 
                team2.team.nickname + ' (' + team2.team.record.summary + ') ' + 
