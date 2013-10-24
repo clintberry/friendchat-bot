@@ -12,6 +12,7 @@
   "dependencies": {
     "domo-kun": "~0.1.4",
     "redwrap": "0.0.4",
-    "nconf": "~0.6.7"
+    "nconf": "~0.6.7",
+    "request": "~2.27.0"
   }
 }
