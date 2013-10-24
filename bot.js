@@ -78,8 +78,8 @@ domo.route('!espn :team', function(res) {
 
 
       var teamInfo = JSON.parse(body);
-      var team1 = teamInfo.sports[0].leagues[0].events[0].competitions[0].competitors[0];
-      var team2 = teamInfo.sports[0].leagues[0].events[0].competitions[0].competitors[1];
+      var team1 = teamInfo.sports[0].leagues[0].events[0].competitions[0].competitors[1];
+      var team2 = teamInfo.sports[0].leagues[0].events[0].competitions[0].competitors[0];
 
       var eventDescription = teamInfo.sports[0].leagues[0].events[0].competitions[0].status.description;
       var eventDetail = teamInfo.sports[0].leagues[0].events[0].competitions[0].status.detail;
@@ -87,7 +87,7 @@ domo.route('!espn :team', function(res) {
       if(eventDescription.toLowerCase() == 'scheduled') {
         eventDetail = moment.utc(eventDetail).format('MMM D, h:mm a');
       }
-      self.say(res.channel, team1.team.nickname + ' (' + team1.team.record.summary + ') vs ' + 
+      self.say(res.channel, team1.team.nickname + ' (' + team1.team.record.summary + ') at ' + 
                team2.team.nickname + ' (' + team2.team.record.summary + ') ' + 
                eventDescription + ' ' + eventDetail);
     }
