@@ -2,8 +2,8 @@ var Domo = require('domo-kun');
 var nconf = require('nconf');
 var http = require('http');
 var reddit = require('redwrap');
-var request = require('')
-
+var request = require('request');
+var moment = require('moment');
 
 nconf.argv()
      .env()
@@ -56,28 +56,40 @@ domo.route('!espn :team', function(res) {
   var byuId = 252;
   //var jazzId = ;
 
-  var url = 'http://api.espn.com/v1/sports/';
+  var baseurl = 'http://api.espn.com/v1/sports/';
 
   var team = res.params.team;
   var sport = null;
 
   if(team.toLowerCase() == 'byu') {
-    url = url + 'football/college-football/teams/252';
+    url = baseurl + 'football/college-football/teams/252/events/'
     sport = 'college-football';
   }
 
   if(team.toLowerCase() == 'utah') {
-    url = url + 'football/college-football/teams/254';
+    url = baseurl + 'football/college-football/teams/254/events';
     sport = 'college-football';
   }
 
   url = url + '?apikey=' + nconf.get('espnkey');
 
-  request(url, function(err, response, body) {
+  request(url, function(error, response, body) {
     if (!error && response.statusCode == 200) {
-      var info = JSON.stringify(body);
-      info.sports[0].leagues[0].teams[0].name
-      self.say(info.sports[0].leagues[0].teams[0].name + " - " + info.sports[0].leagues[0].teams[0].record.summary);
+
+
+      var teamInfo = JSON.parse(body);
+      var team1 = teamInfo.sports[0].leagues[0].events[0].competitions[0].competitors[0];
+      var team2 = teamInfo.sports[0].leagues[0].events[0].competitions[0].competitors[1];
+
+      var eventDescription = teamInfo.sports[0].leagues[0].events[0].competitions[0].status.description;
+      var eventDetail = teamInfo.sports[0].leagues[0].events[0].competitions[0].status.detail;
+
+      if(eventDescription.toLowerCase() == 'scheduled') {
+        eventDetail = moment.utc(eventDetail).format('MMM D, h:mm a');
+      }
+      self.say(res.channel, team1.team.nickname + ' (' + team1.team.record.summary + ') vs ' + 
+               team2.team.nickname + ' (' + team2.team.record.summary + ') ' + 
+               eventDescription + ' ' + eventDetail);
     }
   });
 
