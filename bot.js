@@ -34,7 +34,7 @@ domo.route('Hello hoggle2', function(res) {
 domo.route('hoggle2 die', function(res) {
    this.say(res.channel, 'Go suck a wang, ' + res.nick + '... I am here to stay.');
 });
-domo.route('hoggle2 is Ben gay?', function(res) {
+domo.route('hoggle2 is Ben gay', function(res) {
    this.say(res.channel, 'I think we both know he loves to ski the slopes ' + res.nick + '!');
 });
 
