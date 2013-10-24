@@ -29,7 +29,7 @@ domo.route('Hello hoggle2', function(res) {
 });
 domo.connect();
 
-domo.route('hoggle die', function(res) {
+domo.route('hoggle2 die', function(res) {
    this.say(res.channel, 'Go suck a wang... I am here to stay.');
 });
 domo.connect();
