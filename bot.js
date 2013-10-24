@@ -29,9 +29,9 @@ domo.route('Hello hoggle2', function(res) {
 });
 domo.connect();
 
-//Listen on 9000 so heroku likes us
+
 http.createServer(function (req, res) {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.write('request successfully proxied to: ' + req.url + '\n' + JSON.stringify(req.headers, true, 2));
   res.end();
-}).listen(9000);
+}).listen( process.env.PORT || 5000);
