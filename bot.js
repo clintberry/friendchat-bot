@@ -38,6 +38,10 @@ domo.route('hoggle2 is Ben gay', function(res) {
    this.say(res.channel, 'I think we both know he loves to ski the slopes ' + res.nick + '!');
 });
 
+domo.route('clintberry has joined :whatever', function(res){
+  this.say(res.channel, 'Hello master. Welcome back.');
+})
+
 
 domo.route('!reddit hot', function(res) {
   var self = this;
@@ -81,7 +85,7 @@ domo.route('!espn :team', function(res) {
   }
 
   url = url + '?apikey=' + nconf.get('espnkey');
-  
+
 
   request(url, function(error, response, body) {
     if (!error && response.statusCode == 200) {
