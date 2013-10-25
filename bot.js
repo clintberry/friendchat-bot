@@ -81,6 +81,7 @@ domo.route('!espn :team', function(res) {
   }
 
   url = url + '?apikey=' + nconf.get('espnkey');
+  
 
   request(url, function(error, response, body) {
     if (!error && response.statusCode == 200) {
